@@ -23,8 +23,8 @@ data "aws_iam_policy_document" "kms" {
   }
 
   statement {
-    sid     = "AllowCloudTrail"
-    actions = ["kms:GenerateDataKey*", "kms:DescribeKey", "kms:Decrypt"]
+    sid       = "AllowCloudTrail"
+    actions   = ["kms:GenerateDataKey*", "kms:DescribeKey", "kms:Decrypt"]
     resources = ["*"]
 
     principals {
@@ -34,8 +34,8 @@ data "aws_iam_policy_document" "kms" {
   }
 
   statement {
-    sid     = "AllowConfig"
-    actions = ["kms:GenerateDataKey*", "kms:DescribeKey", "kms:Decrypt"]
+    sid       = "AllowConfig"
+    actions   = ["kms:GenerateDataKey*", "kms:DescribeKey", "kms:Decrypt"]
     resources = ["*"]
 
     principals {
@@ -45,8 +45,8 @@ data "aws_iam_policy_document" "kms" {
   }
 
   statement {
-    sid     = "AllowBackup"
-    actions = ["kms:GenerateDataKey*", "kms:DescribeKey", "kms:Decrypt", "kms:CreateGrant"]
+    sid       = "AllowBackup"
+    actions   = ["kms:GenerateDataKey*", "kms:DescribeKey", "kms:Decrypt", "kms:CreateGrant"]
     resources = ["*"]
 
     principals {
@@ -180,10 +180,10 @@ resource "aws_security_group" "indexer" {
   description = "Wazuh indexer cluster nodes"
 
   ingress {
-    description     = "Indexer API from managers and dashboard"
-    from_port       = 9200
-    to_port         = 9200
-    protocol        = "tcp"
+    description = "Indexer API from managers and dashboard"
+    from_port   = 9200
+    to_port     = 9200
+    protocol    = "tcp"
     security_groups = [
       aws_security_group.manager.id,
       aws_security_group.dashboard.id

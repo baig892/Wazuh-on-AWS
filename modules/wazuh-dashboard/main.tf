@@ -63,13 +63,13 @@ resource "aws_iam_instance_profile" "dashboard" {
 }
 
 resource "aws_instance" "dashboard" {
-  count                   = var.node_count
-  ami                     = local.ami_id
-  instance_type           = var.instance_type
-  subnet_id               = element(var.private_subnet_ids, count.index)
-  vpc_security_group_ids  = [var.security_group_id]
-  iam_instance_profile    = aws_iam_instance_profile.dashboard.name
-  key_name                = var.key_pair_name
+  count                  = var.node_count
+  ami                    = local.ami_id
+  instance_type          = var.instance_type
+  subnet_id              = element(var.private_subnet_ids, count.index)
+  vpc_security_group_ids = [var.security_group_id]
+  iam_instance_profile   = aws_iam_instance_profile.dashboard.name
+  key_name               = var.key_pair_name
 
   root_block_device {
     volume_type = "gp3"

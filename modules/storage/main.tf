@@ -62,6 +62,8 @@ resource "aws_s3_bucket_lifecycle_configuration" "archive" {
 }
 
 # Restrict archive access to the VPC endpoint and S3 replication role.
+data "aws_iam_policy_document" "archive_bucket_unrestricted" {}
+
 data "aws_iam_policy_document" "archive_bucket" {
   statement {
     sid       = "DenyOutsideVpcEndpointOrReplication"
@@ -93,9 +95,8 @@ locals {
 }
 
 resource "aws_s3_bucket_policy" "archive" {
-  count  = var.vpc_endpoint_id == null ? 0 : 1
   bucket = aws_s3_bucket.archive.id
-  policy = data.aws_iam_policy_document.archive_bucket.json
+  policy = var.vpc_endpoint_id == null ? data.aws_iam_policy_document.archive_bucket_unrestricted.json : data.aws_iam_policy_document.archive_bucket.json
 }
 
 # ---------- Cross-region replication ----------

@@ -189,7 +189,7 @@ resource "aws_config_configuration_recorder" "wazuh" {
   role_arn = aws_iam_role.config.arn
 
   recording_group {
-    all_supported                  = true
+    all_supported                 = true
     include_global_resource_types = true
   }
 }
@@ -226,9 +226,9 @@ resource "aws_sns_topic" "alarms" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "instance_status" {
-  for_each = toset(var.monitored_instance_ids)
+  for_each = { for idx, instance_id in var.monitored_instance_ids : idx => instance_id }
 
-  alarm_name          = "${var.name_prefix}-status-check-${each.value}"
+  alarm_name          = "${var.name_prefix}-status-check-${each.key}"
   namespace           = "AWS/EC2"
   metric_name         = "StatusCheckFailed"
   statistic           = "Maximum"

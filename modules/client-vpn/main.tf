@@ -6,7 +6,7 @@ resource "aws_ec2_client_vpn_endpoint" "this" {
   server_certificate_arn = var.server_certificate_arn
   client_cidr_block      = var.client_cidr_block
   vpc_id                 = var.vpc_id
-  split_tunnel            = true
+  split_tunnel           = true
   transport_protocol     = "udp"
 
   # Use client certificates for VPN authentication.
@@ -18,8 +18,8 @@ resource "aws_ec2_client_vpn_endpoint" "this" {
   # VPN connection logs - who connected, when, from where. Feeds the
   # CloudWatch log group created by the monitoring module.
   connection_log_options {
-    enabled               = var.connection_log_group != null
-    cloudwatch_log_group  = var.connection_log_group
+    enabled              = var.connection_log_group != null
+    cloudwatch_log_group = var.connection_log_group
   }
 
   tags = merge(var.tags, {
@@ -29,9 +29,9 @@ resource "aws_ec2_client_vpn_endpoint" "this" {
 
 # Associate the VPN with private subnets in each AZ.
 resource "aws_ec2_client_vpn_network_association" "this" {
-  count                   = length(var.private_subnet_ids)
-  client_vpn_endpoint_id  = aws_ec2_client_vpn_endpoint.this.id
-  subnet_id               = var.private_subnet_ids[count.index]
+  count                  = length(var.private_subnet_ids)
+  client_vpn_endpoint_id = aws_ec2_client_vpn_endpoint.this.id
+  subnet_id              = var.private_subnet_ids[count.index]
 }
 
 # Allow VPN clients to access resources inside the VPC.
