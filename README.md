@@ -166,9 +166,9 @@ Enter your ACM Private CA
 
 ![alt text](image-1.png)
 
-
-# COST related INFO
-https://docs.google.com/spreadsheets/d/1T8kUCODDZqYCAU-_QbQMUd-FzO-S1EEfHOmfLEf9wJg/edit?usp=sharing 
 Enter your Server Certificate
 
 ![alt text](image-2.png)
+
+# COST related INFO
+https://docs.google.com/spreadsheets/d/1T8kUCODDZqYCAU-_QbQMUd-FzO-S1EEfHOmfLEf9wJg/edit?usp=sharing 
