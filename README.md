@@ -11,7 +11,7 @@ even where the resources aren't built yet. Section 3 below is a straight
 list of what's done and what isn't, and I'd rather you read that than find
 out the hard way.
 
-# Google Documentation 
+# Documentation 
 URL: https://docs.google.com/document/d/1c7yPqHzxytMXdRt5dd7CFettZPZhbMEx/edit 
 
 ## 1. Architecture
