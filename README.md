@@ -11,6 +11,9 @@ even where the resources aren't built yet. Section 3 below is a straight
 list of what's done and what isn't, and I'd rather you read that than find
 out the hard way.
 
+# Google Documentation 
+URL: https://docs.google.com/document/d/1c7yPqHzxytMXdRt5dd7CFettZPZhbMEx/edit 
+
 ## 1. Architecture
 
 ![Wazuh SIEM architecture diagram](docs/architecture-diagram.png)
@@ -163,6 +166,9 @@ Enter your ACM Private CA
 
 ![alt text](image-1.png)
 
+
+# COST related INFO
+https://docs.google.com/spreadsheets/d/1T8kUCODDZqYCAU-_QbQMUd-FzO-S1EEfHOmfLEf9wJg/edit?usp=sharing 
 Enter your Server Certificate
 
 ![alt text](image-2.png)
