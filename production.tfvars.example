@@ -1,0 +1,39 @@
+# Full production topology, matching the design doc's cost estimate.
+# Copy to production.tfvars, fill in the certificate ARNs, and run:
+#   terraform plan -var-file=production.tfvars
+# (Deliberately never `apply` this one - see exercise Deliverable 3.)
+
+environment = "prod"
+aws_region  = "eu-west-2"
+
+az_count = 3
+vpc_cidr = "10.0.0.0/16"
+
+client_vpn_cidr                 = "10.100.0.0/22"
+vpn_server_certificate_arn      = "arn:aws:acm:eu-west-2:ACCOUNT_ID:certificate/REPLACE-ME"
+vpn_client_root_certificate_arn = "arn:aws:acm:eu-west-2:ACCOUNT_ID:certificate/REPLACE-ME"
+dashboard_certificate_arn       = "arn:aws:acm:eu-west-2:ACCOUNT_ID:certificate/REPLACE-ME"
+
+manager_node_count    = 3
+manager_instance_type = "m6i.large"
+
+indexer_node_count     = 3
+indexer_instance_type  = "m6i.xlarge"
+indexer_volume_size_gb = 1700 # ~25GB/day x 90d x 2 (1 replica) / 3 nodes, with headroom
+
+dashboard_node_count    = 2
+dashboard_instance_type = "t3.medium"
+
+enable_interface_endpoints = true
+
+backup_retention_days = 35
+enable_backup          = true
+
+archive_retention_days = 400 # 12 months + buffer
+
+enable_dr = true
+dr_region = "eu-west-1"
+
+log_retention_days = 400
+
+key_pair_name = null
